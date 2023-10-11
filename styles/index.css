@@ -1,32 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
 
-body{
+body {
 	font-family: 'Unbounded', sans-serif;
-	background-color: red;
 }
 
 header {
 	background-color: red;
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 .header-name {
 	text-align: center;
 	background-color: blue;
-    width: 20%;
+	width: 20%;
 }
 
 .header-menu {
 	background-color: green;
-    width: 80%;
-    text-align: center;
+	width: 80%;
 }
 
-.header-title{
+.header-title {
 	color: white;
 }
 
 .header-menu-buttons {
-	
+	text-align: right;
+}
+
+.header-menu-button {
+	margin-right: 10px;
 }
