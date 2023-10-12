@@ -4,31 +4,11 @@ body {
 	font-family: 'Unbounded', sans-serif;
 }
 
-header {
-	background-color: red;
-	display: flex;
-	flex-direction: row;
-}
-
-.header-name {
+.container-about-me {
+	margin-top: 50px;
 	text-align: center;
-	background-color: blue;
-	width: 20%;
 }
 
-.header-menu {
-	background-color: green;
-	width: 80%;
-}
-
-.header-title {
-	color: white;
-}
-
-.header-menu-buttons {
-	text-align: right;
-}
-
-.header-menu-button {
-	margin-right: 10px;
+.text-about-me {
+	
 }
