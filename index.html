@@ -1,103 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1">.
+    <title>Shop</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
 
-	<link rel="stylesheet" type="text/css" href="styles/index.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-	<title>Horvitz</title>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+        }
+
+        #main {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            width: 350px;
+            margin: 0 auto;
+        }
+
+        button {
+            border: 0;
+            border-radius: 5px;
+            margin-top: 50px;
+            height: 60px;
+            width: 2000px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 500ms ease;
+            color: var(--tg-theme-button-color);
+            background: var(--tg-theme-button-text-color);
+        }
+
+        button:hover {
+            background: var(--tg-theme-secondary-bg-color);
+        }
+    </style>
 </head>
-
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">HORVITZ</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+    <div id="main">
+        <h1>Онлайн магазин</h1>
+        <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsum magni, molestias.</p>+
+        <button id="buy">Kyпить</button>
+    </div>
+    <form id="form">
+        <input type="text" placeholder="Имя" id="user_name">
+        <input type="text" placeholder="Email" id="user_email">
+        <input type="text" placeholder="Номер телефона" id="user_phone">
+        <div id="error"></div>
+        <button id="order">Оформить заказ</button>
+    </form>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let buy = document.getElementById("buy");
+        let order = document.getElementById("order");
+        tg.expand();
 
-			<div class=" collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav ms-auto ">
-					<li class="nav-item">
-						<a class="nav-link mx-2 active" aria-current="page" href="#">Main</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link mx-2" href="#">Contacts</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link mx-2" href="#">Projects</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+        buy.addEventListener("clock", () => {
+            document.getElementById("main").style.display = "none";
+            document.getElementById("form").style.display = "block";
+            document.getElementById("user_name").value = tg.initDataUnsafe.first_name + " " + tg.initDataUnsafe.last_name
+        });
 
-	<div class="container container-about-me" style="height: 100%;">
-		<div class="row">
-			<div class="col-12">
-				<h1 class="text-dark">Leonid Dyachenko</h1>
-				<p class="text-dark">My name is Leonid, and I'm from picturesque Rostov-on-Don. My passion is
-					programming, and I am constantly updating my knowledge. I am proficient in programming languages and
-					technologies such as Python, JavaScript, HTML/CSS, Express.js, and C++. In addition to programming,
-					I have skills in 3D modeling using Blender. I am currently continuing my studies at the RCSI (Rostov
-					College of Communications and Informatics). I am fluent in Russian and have a good command of
-					English. Automation for me is not just a hobby, it is an integral part of my life.</p>
-			</div>
-		</div>
-	</div>
+        order.addEventListener("click", () => {
+            tg.close();
+            document.getElementById("error").innerText = '';
+            let name = document.getElementById("user_name").value;
+            let email = document.getElementById("user_email").value;
+            let phone = document.getElementById("user_phone").value;
+            if (name.length < 5) {
+                document.getElementById("error").innerText = "Ошибка в имени";
+                return;
+            }
+            if (email.length < 5) {
+                document.getElementById("error").innerText = "Ошибка в email";
+                return;
+            }
+            if (phone.length < 5) {
+                document.getElementById("error").innerText = "Ошибка в номере телефона";
+                return;
+            }
+            let data = {
+                name: name,
+                email: email,
+                phone: phone
+            }
+            tg.sendData(JSON.stringify(data));
 
-	<div class="contanier bg-dark">
-		<div class="row">
-			<div class="col-12">
-				<h1 class="text-light">Contacts</h1>
-				<h3 class="text-light">Email</h3>
-				<h3 class="text-light">Telephone</h3>
-			</div>
-		</div>
-	</div>
-
-	<footer class="bg-dark text-center text-white">
-		<div class="container p-4 pb-0">
-			<!-- Section: Social media -->
-			<section class="mb-4">
-				<!-- Github -->
-				<a class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i
-						class="fab fa-github"></i></a>
-				<!-- Discord -->
-				<a class="btn text-white btn-floating m-1" style="background-color: #404eed;" href="#!" role="button"><i
-						class="fab fa-discord"></i></a>
-				<!-- Vk -->
-				<a class="btn text-white btn-floating m-1" style="background-color: #0077ff;" href="#!" role="button"><i
-					class="fab fa-vk"></i></a>
-				<!-- Telegram -->
-				<a class="btn text-white btn-floating m-1" style="background-color: #2c9ed9;" href="#!" role="button"><i
-						class="fab fa-telegram"></i></a>
-			</section>
-			<!-- Section: Social media -->
-		</div>
-
-		<!-- Copyright -->
-		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-			© 2023 Copyright: Horvitz
-		</div>
-		<!-- Copyright -->
-	</footer>
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-		integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
-	</script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-	</script>
+            tg.close();
+        })
+    </script>
 </body>
-
 </html>
