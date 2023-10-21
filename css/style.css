@@ -1,0 +1,80 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 18px;
+	color: var(--tg-theme-text-color);
+	background: var(--tg-theme-bg-color);
+}
+
+.container {
+	max-width: 100%;
+}
+
+.inner {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 200px 200px 200px;
+}
+
+.img {
+	width: 150px;
+}
+
+.item {
+	margin: 0 auto;
+	display: block;
+}
+
+.btn {
+	display: flex;
+	margin: 0 auto;
+	padding: 1px;
+	border: none;
+	background: rgb(248, 168, 24);
+	border-radius: 10px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 700;
+	width: 80px;
+	transition: background .2s linear;
+}
+
+.counter {
+	display: table;
+	padding: 5px;
+}
+
+.counter-button {
+	height: 30px;
+	width: 30px;
+	background: rgb(248, 168, 24);
+	border: none;
+	font-size: 20px;
+	padding: 0;
+	color: #fff;
+	border-radius: 10px;
+}
+
+.counter-button:hover {
+	background: rgb(245, 182, 65);
+}
+
+.usercard {
+	text-align: center;
+}
+
+.order-button-container {
+	text-align: center;
+}
+
+.order-button {
+	width: 290px;
+	height: 50px;
+	text-align: center;
+	border: 0;
+	border-radius: 10px;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 28px;
+	background: rgb(7, 167, 1);
+}
