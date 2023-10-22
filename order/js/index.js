@@ -62,9 +62,15 @@ for (let product in products) {
     }
 }
 
-let checkout = document.getElementById("checkout")
 let tg = window.Telegram.WebApp;
+tg.expand();
 
-checkout.addEventListener('click', function(){
+let MainButton = WebApp.MainButton;
+let BackButton = WebApp.BackButton;
+
+MainButton.show();
+BackButton.show();
+
+MainButton.onClick(function() {
     tg.sendData(productsJson);
-})
+  });
