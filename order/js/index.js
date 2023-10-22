@@ -79,4 +79,6 @@ tg.MainButton.onClick(function() {
     tg.sendData(productsJson);
   });
 
+  tg.close
+
   
