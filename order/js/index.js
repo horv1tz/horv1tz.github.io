@@ -76,9 +76,9 @@ tg.MainButton.color = '#2cab37';
 tg.MainButton.show();
 
 tg.MainButton.onClick(function() {
-    tg.sendData(productsJson);
+    tg.sendData(`${productsJson}`);
   });
 
-  tg.close
+  tg.close()
 
   
