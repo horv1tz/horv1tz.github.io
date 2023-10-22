@@ -70,14 +70,12 @@ console.log("WebApp.BackButton:", Telegram.WebApp.BackButton);
 let tg = window.Telegram.WebApp;
 tg.expand();
 
-let MainButton = Telegram.WebApp.MainButton;
+tg.MainButton.textColor = '#FFFFFF';
+tg.MainButton.color = '#2cab37';
 
-MainButton.textColor = '#FFFFFF';
-MainButton.color = '#2cab37';
+tg.MainButton.show();
 
-MainButton.show();
-
-MainButton.onClick(function() {
+tg.MainButton.onClick(function() {
     tg.sendData(productsJson);
   });
 
