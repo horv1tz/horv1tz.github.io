@@ -63,6 +63,7 @@ for (let product in products) {
 }
 
 let checkout = document.getElementById("checkout")
+let tg = window.Telegram.WebApp;
 
 checkout.addEventListener('click', function(){
     tg.sendData(productsJson);
