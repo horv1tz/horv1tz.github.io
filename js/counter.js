@@ -1,3 +1,14 @@
+let products = {
+    "Burger": 0,
+    "Cake": 0,
+    "Cola": 0,
+    "Gele": 0,
+    "Hotdog": 0,
+    "Taco": 0
+}
+
+let button_order = document.getElementById("order-button");
+
 // Хуйня 1
 let counter1 = document.getElementById("counter1");
 let counter1_minus = document.getElementById("minus-counter1");
@@ -9,12 +20,14 @@ counter1_minus.addEventListener("click", function(){
         alert('Вы не можете выбрать меньше 0');
     } else {
     counter1.innerHTML = before - 1;
+    --products.Burger
     }
 });
 
 counter1_plus.addEventListener("click", function(){
     let before = parseInt(counter1.innerHTML, 10);
     counter1.innerHTML = before + 1;
+    ++products.Burger
 }); 
 
 // Хуйня 2
@@ -28,12 +41,14 @@ counter2_minus.addEventListener("click", function(){
         alert('Вы не можете выбрать меньше 0');
     } else {
     counter2.innerHTML = before - 1;
+    --products.Cake
     }
 });
 
 counter2_plus.addEventListener("click", function(){
     let before = parseInt(counter2.innerHTML, 10);
     counter2.innerHTML = before + 1;
+    ++products.Cake
 }); 
 
 // Хуйня 3
@@ -47,12 +62,14 @@ counter3_minus.addEventListener("click", function(){
         alert('Вы не можете выбрать меньше 0');
     } else {
     counter3.innerHTML = before - 1;
+    --products.Cola
     }
 });
 
 counter3_plus.addEventListener("click", function(){
     let before = parseInt(counter3.innerHTML, 10);
     counter3.innerHTML = before + 1;
+    ++products.Cola
 }); 
 
 // Хуйня 4
@@ -66,12 +83,14 @@ counter4_minus.addEventListener("click", function(){
         alert('Вы не можете выбрать меньше 0');
     } else {
     counter4.innerHTML = before - 1;
+    --products.Gele
     }
 });
 
 counter4_plus.addEventListener("click", function(){
     let before = parseInt(counter4.innerHTML, 10);
     counter4.innerHTML = before + 1;
+    ++products.Gele
 }); 
 
 // Хуйня 5
@@ -85,12 +104,14 @@ counter5_minus.addEventListener("click", function(){
         alert('Вы не можете выбрать меньше 0');
     } else {
     counter5.innerHTML = before - 1;
+    --products.Hotdog
     }
 });
 
 counter5_plus.addEventListener("click", function(){
     let before = parseInt(counter5.innerHTML, 10);
     counter5.innerHTML = before + 1;
+    ++products.Hotdog
 }); 
 
 // Хуйня 6
@@ -104,11 +125,16 @@ counter6_minus.addEventListener("click", function(){
         alert('Вы не можете выбрать меньше 0');
     } else {
     counter6.innerHTML = before - 1;
+    --products.Taco
     }
 });
 
 counter6_plus.addEventListener("click", function(){
     let before = parseInt(counter6.innerHTML, 10);
     counter6.innerHTML = before + 1;
+    ++products.Taco
 }); 
 
+button_order.addEventListener("click", function(){
+    window.location.href = `https://horvitz.ru/?burger=${products.Burger}&cake=${products.Cake}&cola=${products.Cola}&gele=${products.Gele}&hotdog=${products.Hotdog}&taco=${products.Taco}`;
+});
