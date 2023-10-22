@@ -62,14 +62,17 @@ for (let product in products) {
     }
 }
 
+console.log("Telegram.WebApp:", window.Telegram.WebApp);
+console.log("WebApp.MainButton:", Telegram.WebApp.MainButton);
+console.log("WebApp.BackButton:", Telegram.WebApp.BackButton);
+
+
 let tg = window.Telegram.WebApp;
 tg.expand();
 
-let MainButton = WebApp.MainButton;
-let BackButton = WebApp.BackButton;
+let MainButton = Telegram.WebApp.MainButton;
 
 MainButton.show();
-BackButton.show();
 
 MainButton.onClick(function() {
     tg.sendData(productsJson);
