@@ -72,6 +72,9 @@ tg.expand();
 
 let MainButton = Telegram.WebApp.MainButton;
 
+MainButton.textColor = '#FFFFFF';
+MainButton.color = '#2cab37';
+
 MainButton.show();
 
 MainButton.onClick(function() {
