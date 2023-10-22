@@ -1,140 +1,50 @@
+
 let products = {
-    "Burger": 0,
-    "Cake": 0,
-    "Cola": 0,
-    "Gele": 0,
-    "Hotdog": 0,
-    "Taco": 0
+    "1": {"name": "Burger", "count": 0},
+    "2": {"name": "Cake", "count": 0},
+    "3": {"name": "Cola", "count": 0},
+    "4": {"name": "Gele", "count": 0},
+    "5": {"name": "Hotdog", "count": 0},
+    "6": {"name": "Taco", "count": 0}
+}
+
+// Упрощенная функция для обработки событий нажатия кнопок
+function handleCounterClick(productId, increment) {
+    let counter = document.getElementById("counter" + productId);
+    let currentValue = parseInt(counter.innerHTML, 10);
+
+    if (increment && currentValue < 9) {
+        counter.innerHTML = currentValue + 1;
+        products[productId].count++;
+    } else if (!increment && currentValue > 0) {
+        counter.innerHTML = currentValue - 1;
+        products[productId].count--;
+    } else {
+        alert('Вы не можете выбрать меньше 0 или больше 9');
+    }
+}
+
+// Применяем обработчики для каждого продукта
+for (let productId in products) {
+    let minusButton = document.getElementById("minus-counter" + productId);
+    let plusButton = document.getElementById("plus-counter" + productId);
+
+    minusButton.addEventListener("click", () => handleCounterClick(productId, false));
+    plusButton.addEventListener("click", () => handleCounterClick(productId, true));
 }
 
 let button_order = document.getElementById("order-button");
 
-// Хуйня 1
-let counter1 = document.getElementById("counter1");
-let counter1_minus = document.getElementById("minus-counter1");
-let counter1_plus = document.getElementById("plus-counter1");
-
-counter1_minus.addEventListener("click", function(){
-    let before = parseInt(counter1.innerHTML, 10);
-    if (before == 0){
-        alert('Вы не можете выбрать меньше 0');
-    } else {
-    counter1.innerHTML = before - 1;
-    --products.Burger
-    }
-});
-
-counter1_plus.addEventListener("click", function(){
-    let before = parseInt(counter1.innerHTML, 10);
-    counter1.innerHTML = before + 1;
-    ++products.Burger
-}); 
-
-// Хуйня 2
-let counter2 = document.getElementById("counter2");
-let counter2_minus = document.getElementById("minus-counter2");
-let counter2_plus = document.getElementById("plus-counter2");
-
-counter2_minus.addEventListener("click", function(){
-    let before = parseInt(counter2.innerHTML, 10);
-    if (before == 0){
-        alert('Вы не можете выбрать меньше 0');
-    } else {
-    counter2.innerHTML = before - 1;
-    --products.Cake
-    }
-});
-
-counter2_plus.addEventListener("click", function(){
-    let before = parseInt(counter2.innerHTML, 10);
-    counter2.innerHTML = before + 1;
-    ++products.Cake
-}); 
-
-// Хуйня 3
-let counter3 = document.getElementById("counter3");
-let counter3_minus = document.getElementById("minus-counter3");
-let counter3_plus = document.getElementById("plus-counter3");
-
-counter3_minus.addEventListener("click", function(){
-    let before = parseInt(counter3.innerHTML, 10);
-    if (before == 0){
-        alert('Вы не можете выбрать меньше 0');
-    } else {
-    counter3.innerHTML = before - 1;
-    --products.Cola
-    }
-});
-
-counter3_plus.addEventListener("click", function(){
-    let before = parseInt(counter3.innerHTML, 10);
-    counter3.innerHTML = before + 1;
-    ++products.Cola
-}); 
-
-// Хуйня 4
-let counter4 = document.getElementById("counter4");
-let counter4_minus = document.getElementById("minus-counter4");
-let counter4_plus = document.getElementById("plus-counter4");
-
-counter4_minus.addEventListener("click", function(){
-    let before = parseInt(counter4.innerHTML, 10);
-    if (before == 0){
-        alert('Вы не можете выбрать меньше 0');
-    } else {
-    counter4.innerHTML = before - 1;
-    --products.Gele
-    }
-});
-
-counter4_plus.addEventListener("click", function(){
-    let before = parseInt(counter4.innerHTML, 10);
-    counter4.innerHTML = before + 1;
-    ++products.Gele
-}); 
-
-// Хуйня 5
-let counter5 = document.getElementById("counter5");
-let counter5_minus = document.getElementById("minus-counter5");
-let counter5_plus = document.getElementById("plus-counter5");
-
-counter5_minus.addEventListener("click", function(){
-    let before = parseInt(counter5.innerHTML, 10);
-    if (before == 0){
-        alert('Вы не можете выбрать меньше 0');
-    } else {
-    counter5.innerHTML = before - 1;
-    --products.Hotdog
-    }
-});
-
-counter5_plus.addEventListener("click", function(){
-    let before = parseInt(counter5.innerHTML, 10);
-    counter5.innerHTML = before + 1;
-    ++products.Hotdog
-}); 
-
-// Хуйня 6
-let counter6 = document.getElementById("counter6");
-let counter6_minus = document.getElementById("minus-counter6");
-let counter6_plus = document.getElementById("plus-counter6");
-
-counter6_minus.addEventListener("click", function(){
-    let before = parseInt(counter6.innerHTML, 10);
-    if (before == 0){
-        alert('Вы не можете выбрать меньше 0');
-    } else {
-    counter6.innerHTML = before - 1;
-    --products.Taco
-    }
-});
-
-counter6_plus.addEventListener("click", function(){
-    let before = parseInt(counter6.innerHTML, 10);
-    counter6.innerHTML = before + 1;
-    ++products.Taco
-}); 
-
 button_order.addEventListener("click", function(){
-    window.location.href = `https://horvitz.ru/order/?burger=${products.Burger}&cake=${products.Cake}&cola=${products.Cola}&gele=${products.Gele}&hotdog=${products.Hotdog}&taco=${products.Taco}`;
+    let totalQuantity = 0;
+    for (let productId in products) {
+        totalQuantity += products[productId].count;
+    }
+    
+    if (totalQuantity === 0) {
+        alert("Нужно взять хотя бы 1 товар");
+        return;  // Stop the function if total quantity is 0
+    }
+
+    window.location.href = `/order/?burger=${products["1"].count}&cake=${products["2"].count}&cola=${products["3"].count}&gele=${products["4"].count}&hotdog=${products["5"].count}&taco=${products["6"].count}`;
 });

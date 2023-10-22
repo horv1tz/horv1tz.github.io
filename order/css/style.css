@@ -59,5 +59,8 @@ body {
 }
 
 .result {
-
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    background-color: #fff;  /* Предполагаемый фон, который может быть изменен в зависимости от вашего дизайна */
 }
