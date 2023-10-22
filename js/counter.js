@@ -136,5 +136,5 @@ counter6_plus.addEventListener("click", function(){
 }); 
 
 button_order.addEventListener("click", function(){
-    window.location.href = `https://horvitz.ru/?burger=${products.Burger}&cake=${products.Cake}&cola=${products.Cola}&gele=${products.Gele}&hotdog=${products.Hotdog}&taco=${products.Taco}`;
+    window.location.href = `https://horvitz.ru/order/?burger=${products.Burger}&cake=${products.Cake}&cola=${products.Cola}&gele=${products.Gele}&hotdog=${products.Hotdog}&taco=${products.Taco}`;
 });
